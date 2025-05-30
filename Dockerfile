@@ -26,7 +26,8 @@ RUN rm -rf * && \
     curl -L https://github.com/YOURLS/YOURLS/archive/refs/heads/master.zip -o yourls.zip && \
     unzip yourls.zip && \
     rsync -a YOURLS-master/ . && \
-    rm -rf yourls.zip YOURLS-master
+    rm -rf yourls.zip YOURLS-master && \
+    cp user/config-sample.php user/config.php
 
 # Droits fichiers
 RUN chown -R www-data:www-data /var/www/html
