@@ -17,6 +17,9 @@ RUN echo "DirectoryIndex index.php index.html" > /etc/apache2/conf-available/you
 ENV PORT=8080
 RUN sed -i "s/80/\${PORT}/g" /etc/apache2/ports.conf /etc/apache2/sites-available/000-default.conf
 
+# Change le DocumentRoot Apache pour pointer vers le dossier admin (où se trouve index.php)
+RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/admin|g' /etc/apache2/sites-available/000-default.conf
+
 # Déploie YOURLS proprement
 WORKDIR /var/www/html
 RUN rm -rf * && \
